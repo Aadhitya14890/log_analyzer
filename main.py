@@ -4,7 +4,7 @@ import logging
 import argparse
 from file_handler import read_log_file
 from analyzer import analyze_logs
-from report import display_report, save_csv_report
+from report import display_report, save_csv_report, save_html_report
 from config import setup_logging, load_config
 
 config = load_config()
@@ -38,6 +38,7 @@ def main():
 
     display_report(counts)
     save_csv_report(counts, config["csv_report"])
+    save_html_report(counts, config["html_report"])
 
     logger.info("Log analysis completed")
 
