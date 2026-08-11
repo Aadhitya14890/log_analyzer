@@ -1,0 +1,18 @@
+INFO: Application started
+INFO: Configuration loaded
+INFO: User logged in
+INFO: Database connected
+INFO: Server started
+INFO: Request received
+INFO: Request completed
+INFO: Cache initialized
+INFO: Backup started
+INFO: Backup completed
+
+WARNING: Disk space is getting low
+WARNING: High memory usage
+WARNING: Slow database response
+WARNING: Connection retry
+
+ERROR: Database connection failed
+ERROR: File processing failed
