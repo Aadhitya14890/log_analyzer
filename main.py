@@ -3,7 +3,7 @@
 import logging
 from file_handler import read_log_file
 from analyzer import analyze_logs
-from report import display_report
+from report import display_report, save_csv_report
 from config import setup_logging
 
 setup_logging()
@@ -25,6 +25,7 @@ def main():
     counts = analyze_logs(log_lines)
 
     display_report(counts)
+    save_csv_report(counts, "report.csv")
 
     logger.info("Log analysis completed")
 
