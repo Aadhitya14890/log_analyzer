@@ -1,0 +1,9 @@
+{
+    "log_levels": [
+        "INFO",
+        "WARNING",
+        "ERROR"
+    ],
+    "csv_report": "report.csv",
+    "log_file": "log_analyzer.log"
+}

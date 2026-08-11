@@ -1,18 +1,15 @@
 # analyzer.py
 
-from config import LOG_LEVELS
-
-
-def analyze_logs(log_lines):
+def analyze_logs(log_lines, log_levels):
     counts = {}
 
     # Initialize all log levels to 0
-    for level in LOG_LEVELS:
+    for level in log_levels:
         counts[level] = 0
 
     # Check each line
     for line in log_lines:
-        for level in LOG_LEVELS:
+        for level in log_levels:
             if level in line:
                 counts[level] += 1
 

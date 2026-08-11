@@ -9,7 +9,8 @@ def test_analyze_logs():
         "ERROR: Database failed"
     ]
 
-    result = analyze_logs(logs)
+    log_levels = ["INFO", "WARNING", "ERROR"]
+    result = analyze_logs(logs, log_levels)
 
     assert result["INFO"] == 2
     assert result["WARNING"] == 1
