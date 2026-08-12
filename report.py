@@ -19,16 +19,60 @@ def save_csv_report(counts, filename):
 
 
 def save_html_report(counts, filename):
+    total_logs = sum(counts.values())
+
     with open(filename, "w") as file:
         file.write("<html>")
         file.write("<head>")
         file.write("<title>Log Analysis Report</title>")
+
+        file.write("""
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 40px;
+            }
+
+            h1 {
+                text-align: center;
+            }
+
+            .summary {
+                text-align: center;
+                font-size: 18px;
+                margin-bottom: 20px;
+            }
+
+            table {
+                width: 60%;
+                margin: auto;
+                border-collapse: collapse;
+            }
+
+            th, td {
+                border: 1px solid black;
+                padding: 10px;
+                text-align: center;
+            }
+
+            th {
+                background-color: #eeeeee;
+            }
+        </style>
+        """)
+
         file.write("</head>")
 
         file.write("<body>")
+
         file.write("<h1>Log Analysis Report</h1>")
 
-        file.write("<table border='1'>")
+        file.write(
+            f"<div class='summary'>Total Logs: {total_logs}</div>"
+        )
+
+        file.write("<table>")
+
         file.write("<tr>")
         file.write("<th>Log Level</th>")
         file.write("<th>Count</th>")
@@ -41,6 +85,7 @@ def save_html_report(counts, filename):
             file.write("</tr>")
 
         file.write("</table>")
+
         file.write("</body>")
         file.write("</html>")
 
