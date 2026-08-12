@@ -1,0 +1,9 @@
+.git
+.gitignore
+__pycache__
+.pytest_cache
+tests/__pycache__
+*.pyc
+report.csv
+report.html
+test-results.xml
