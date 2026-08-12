@@ -39,18 +39,12 @@ pipeline {
                 bat 'docker run --rm log-analyzer:%BUILD_NUMBER% python main.py application.log'
             }
         }
-
-        stage('Generate Report') {
-            steps {
-                bat 'python main.py application.log'
-            }
-        }
     }
     
     post {
         always {
             junit 'test-results.xml'
-            archiveArtifacts artifacts: 'report.html, report.csv', allowEmptyArchive: true
+            bat 'docker image prune -f'
         }
     }
 }
