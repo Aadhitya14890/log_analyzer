@@ -15,6 +15,12 @@ pipeline {
                 bat 'python -m pytest --junitxml=test-results.xml'
             }
         }
+
+        stage('Generate Report') {
+            steps {
+                bat 'python main.py application.log'
+            }
+        }
     }
     
     post {
