@@ -22,6 +22,22 @@ pipeline {
             }
         }
 
+        stage('Push Docker Image') {
+            steps {
+                withCredentials([
+                    usernamePassword(
+                        credentialsId: 'dockerhub-credentials',
+                        usernameVariable: 'DOCKER_USERNAME',
+                        passwordVariable: 'DOCKER_PASSWORD'
+                    )
+                ]) {
+                    bat 'docker login -u "%DOCKER_USERNAME%" -p "%DOCKER_PASSWORD%"'
+                    bat 'docker tag log-analyzer:%BUILD_NUMBER% %DOCKER_USERNAME%/log-analyzer:%BUILD_NUMBER%'
+                    bat 'docker push %DOCKER_USERNAME%/log-analyzer:%BUILD_NUMBER%'
+                }
+            }
+        }
+
         stage('Verify Docker Image') {
             steps {
                 bat 'docker images log-analyzer'
