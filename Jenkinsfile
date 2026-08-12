@@ -16,6 +16,14 @@ pipeline {
             }
         }
 
+        stage('Test Docker') {
+            steps {
+                bat 'whoami'
+                bat 'docker --version'
+                bat 'docker info'
+            }
+        }
+        
         stage('Generate Report') {
             steps {
                 bat 'python main.py application.log'
