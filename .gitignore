@@ -4,3 +4,4 @@ __pycache__/
 *.log
 report.csv
 report.html
+test-results.xml
