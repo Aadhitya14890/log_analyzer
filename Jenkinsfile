@@ -26,6 +26,7 @@ pipeline {
     post {
         always {
             junit 'test-results.xml'
+            archiveArtifacts artifacts: 'report.html, report.csv', allowEmptyArchive: true
         }
     }
 }
