@@ -22,6 +22,12 @@ pipeline {
             }
         }
 
+        stage('Verify Docker Image') {
+            steps {
+                bat 'docker images log-analyzer'
+            }
+        }
+
         stage('Generate Report') {
             steps {
                 bat 'python main.py application.log'
