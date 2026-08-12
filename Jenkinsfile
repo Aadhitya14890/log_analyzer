@@ -16,14 +16,12 @@ pipeline {
             }
         }
 
-        stage('Test Docker') {
+        stage('Build Docker Image') {
             steps {
-                bat 'whoami'
-                bat 'docker --version'
-                bat 'docker info'
+                bat 'docker build -t log-analyzer:%BUILD_NUMBER% .'
             }
         }
-        
+
         stage('Generate Report') {
             steps {
                 bat 'python main.py application.log'
