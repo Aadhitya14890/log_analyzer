@@ -28,6 +28,12 @@ pipeline {
             }
         }
 
+        stage('Docker Tests') {
+            steps {
+                bat 'docker run --rm log-analyzer:%BUILD_NUMBER% python -m pytest'
+            }
+        }
+
         stage('Generate Report') {
             steps {
                 bat 'python main.py application.log'
