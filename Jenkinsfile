@@ -38,6 +38,16 @@ pipeline {
             }
         }
 
+        stage('Deploy Container') {
+            steps {
+                bat '''
+                docker stop log-analyzer-container 2>NUL || exit /B 0
+                docker rm log-analyzer-container 2>NUL || exit /B 0
+                docker run -d --name log-analyzer-container log-analyzer:%BUILD_NUMBER% python main.py application.log
+                '''
+            }
+        }     
+
         stage('Verify Docker Image') {
             steps {
                 bat 'docker images log-analyzer'
@@ -55,12 +65,14 @@ pipeline {
                 bat 'docker run --rm log-analyzer:%BUILD_NUMBER% python main.py application.log'
             }
         }
+   
+
     }
     
     post {
         always {
             junit 'test-results.xml'
-            bat 'docker image prune -f'
+            
         }
     }
 }
