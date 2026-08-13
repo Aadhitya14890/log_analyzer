@@ -41,9 +41,12 @@ pipeline {
         stage('Deploy Container') {
             steps {
                 bat '''
+                docker pull aadhitya14890/log-analyzer:%BUILD_NUMBER%
+
                 docker stop log-analyzer-container 2>NUL || exit /B 0
                 docker rm log-analyzer-container 2>NUL || exit /B 0
-                docker run -d --name log-analyzer-container log-analyzer:%BUILD_NUMBER% python main.py application.log
+
+                docker run --name log-analyzer-container aadhitya14890/log-analyzer:%BUILD_NUMBER% python main.py application.log
                 '''
             }
         }     
